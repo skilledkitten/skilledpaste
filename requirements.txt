@@ -1,0 +1,4 @@
+fastapi
+redis
+uvicorn
+jinja2  # For templating

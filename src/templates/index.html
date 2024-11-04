@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>SkilledPaste</title>
+    <!-- Include the marked.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.1.3/marked.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab(event, 'edit')">Edit</button>
+                <button class="tab-button" onclick="openTab(event, 'preview')">Preview</button>
+                <button class="tab-button" onclick="openTab(event, 'md')">MD</button>
+            </div>
+            <div id="edit" class="tab-content active">
+                <textarea id="editor" placeholder="Type your Markdown here..."></textarea>
+            </div>
+            <div id="preview" class="tab-content">
+                <div id="preview-content" class="preview"></div>
+            </div>
+            <div id="md" class="tab-content">
+                <textarea id="md-output" readonly></textarea>
+            </div>
+        </div>
+        <form action="/create/" method="post" id="pasteForm">
+            <input type="hidden" name="content" id="contentInput">
+            <button type="submit">Create Paste</button>
+        </form>
+    </div>
+    <script src="static/script.js"></script>
+    <script>
+        document.getElementById('pasteForm').addEventListener('submit', function() {
+            document.getElementById('contentInput').value = document.getElementById('editor').value;
+        });
+    </script>
+</body>
+</html>
